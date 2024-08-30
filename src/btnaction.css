@@ -1,0 +1,9 @@
+.btn_action:hover {
+    background-color: white;
+    color: black;
+    transition: all .15s ease-in-out;
+}
+
+.btn_action {
+    transition: all .15s ease-in-out;
+}
