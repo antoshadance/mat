@@ -14,4 +14,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./"),
     },
   },
+  server: {
+    proxy: {
+      "/api": "http://localhost:8713/cars"
+    }
+  }
 })

@@ -1,3 +1,7 @@
+.container-1, .container-2 {
+    overflow: scroll;
+}
+
 .container-1::-webkit-scrollbar,.container-2::-webkit-scrollbar {
     display: none;
 }

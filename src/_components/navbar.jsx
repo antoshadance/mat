@@ -32,7 +32,7 @@ const Navbar = () => {
 
     return (
         <> 
-        <nav className="py-5 px-5  md:px-24 flex justify-between h-[100px] w-full backdrop-blur-sm z-10 sticky top-0" >
+        <nav className="py-5 px-5  md:px-24 flex justify-between h-[100px] w-full backdrop-blur-sm z-[99999] sticky top-0" >
 
             <Link to={"/"} className="logo_link" onClick={()=>{setIsClicked(false)}}><HorizontalLogo h="100%" w="100%" fill="currentColor" /></Link>
 
@@ -86,7 +86,7 @@ const Navbar = () => {
 
         </nav>
         {isClicked?
-            <ul className="flex flex-col justify-between pt-16 pb-64 w-full h-[calc(100vh-100px)] fixed top-[100px] backdrop-blur-sm text-center uppercase font-semibold text-xl">
+            <ul className="flex flex-col justify-between pt-16 pb-64 w-full h-[calc(100vh-100px)] z-[99999] fixed top-[100px] backdrop-blur-sm text-center uppercase font-semibold text-xl">
                 <li>
                 <Link to={"/"}
                 className="hover:text-white transition"

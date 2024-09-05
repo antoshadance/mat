@@ -1,6 +1,6 @@
 import './index.css'
 import Navbar from './_components/navbar';
-import "./btnaction.css"
+import "./_components/btnaction.css"
 
 
 function Home() {

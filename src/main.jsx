@@ -4,16 +4,20 @@ import Home from './Home.jsx'
 import Test from './Test.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ImageCarousel from './_components/imageCarousel.jsx'
 
 const router = createBrowserRouter([
   {
     path:"/",
     element: <Home/>
   },
-
   {
     path: "/test",
     element: <Test/>
+  },
+  {
+    path: "/carousel",
+    element: <ImageCarousel/>
   }
 ])
 
