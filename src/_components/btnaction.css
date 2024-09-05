@@ -4,12 +4,17 @@
     transition: all .15s ease-in-out;
 }
 
-.btn_action,.btn_action_delete {
-    transition: all .15s ease-in-out;
+.btn_action_secondary:hover {
+    /* background-color: #020a0a50; */
+    background-color: #ccc;
+    border-color: #ccc;
 }
-
 
 
 .btn_action_delete:hover {
     background-color: rgb(97, 0, 0);
+}
+
+.btn_action,.btn_action_delete,.btn_action_secondary {
+    transition: all .15s ease-in-out;
 }
