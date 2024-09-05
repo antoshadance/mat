@@ -5,6 +5,7 @@ import Test from './Test.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ImageCarousel from './_components/imageCarousel.jsx'
+import AddCar from './AddCar.jsx'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/carousel",
     element: <ImageCarousel/>
+  },
+  {
+    path: "/add-car",
+    element: <AddCar/>
   }
 ])
 
