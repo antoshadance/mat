@@ -5,6 +5,10 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion"
 
+import "./btnaction.css"
+
+import { Link } from "react-router-dom";
+
 const AdminMenu = (props) => {
     return ( 
         <div className="container-1 h-[calc(100vh-100px)] w-1/3 flex flex-col border-r-[1px] border-[#ccc]/10 gap-y-20">
@@ -42,7 +46,7 @@ const AdminMenu = (props) => {
                                         Архив
                                     </AccordionItem>
                                     <AccordionItem role="button">
-                                        Добавить автомобиль
+                                    <Link to={"/add-car"}>Добавить автомобиль</Link>
                                     </AccordionItem>
                                 </AccordionContent>
                             </AccordionItem>

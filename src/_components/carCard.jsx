@@ -12,7 +12,7 @@ const CarCard = (props) => {
                 <div className="w-full h-3/4 flex flex-col justify-between">
                 <h2 className="text-lg">{props.brand} {props.model}, {props.year}</h2>
                 <p className="text-xl">{props.price} руб. </p>
-                <p className="line-clamp-2 ">Новый автомобиль, без пробега по РФ! Новый автомобиль, без пробега по РФ! Покупка в лизинг, с НДС и без.</p>
+                <p className="line-clamp-2 ">{props.description}</p>
                 </div>
 
                 <div className="flex w-full justify-between">
