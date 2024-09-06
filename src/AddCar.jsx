@@ -7,7 +7,38 @@ import "./_components/btnaction.css"
 
 const AddCar = () => {
 
-    const [parentHover, setParentHover] = useState(false);
+
+    const [formData,setFormData] = useState({
+        brand:"",
+        model:"",
+        year:"",
+        price:"",
+        color:"",
+        engine_capacity:"",
+        engine_power:"",
+        mileage:"",
+        imgs:"",
+        description: "",
+    })
+
+    function handleChange(e) {
+        setFormData({...formData,[e.target.name]:e.target.value})
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        const data = {...formData};
+        console.log(data)
+
+        fetch("http://localhost:8713/api/cars/create-new",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData)
+        })
+    }
 
     return ( 
         <>
@@ -20,7 +51,7 @@ const AddCar = () => {
 
                 <h1 className="text-center uppercase text-4xl">Каталог</h1>
                 
-                    <form className="w-full h-full flex pb-2 justify-between">
+                    <form className="w-full h-full flex pb-2 justify-between" onSubmit={handleSubmit}>
 
                         <div className="basis-1/3 h-full px-2 flex flex-col justify-between ">
 
@@ -31,15 +62,19 @@ const AddCar = () => {
                             className="bg-[#020a0a]/75 w-full text-[#ccc] border rounded-lg px-2 border-[#ccc]/25"
                             placeholder="..."
                             name="brand"
+                            value={formData.brand}
+                            onChange={handleChange}
                             ></input>
                             </div>
 
                             <div>
-                            <label htmlFor="brand">Модель</label>
+                            <label htmlFor="model">Модель</label>
                             <input
                             className="bg-[#020a0a]/75 w-full text-[#ccc] border rounded-lg px-2 border-[#ccc]/25"
                             placeholder="..."
                             name="model"
+                            value={formData.model}
+                            onChange={handleChange}
                             ></input>
                             </div>
 
@@ -49,6 +84,8 @@ const AddCar = () => {
                             className="bg-[#020a0a]/75 w-full text-[#ccc] border rounded-lg px-2 border-[#ccc]/25"
                             placeholder="..."
                             name="year"
+                            value={formData.year}
+                            onChange={handleChange}
                             ></input>
                             </div>
 
@@ -58,6 +95,8 @@ const AddCar = () => {
                             className="bg-[#020a0a]/75 w-full text-[#ccc] border rounded-lg px-2 border-[#ccc]/25"
                             placeholder="..."
                             name="price"
+                            value={formData.price}
+                            onChange={handleChange}
                             ></input>
                             </div>
 
@@ -67,6 +106,8 @@ const AddCar = () => {
                             className="bg-[#020a0a]/75 w-full text-[#ccc] border rounded-lg px-2 border-[#ccc]/25"
                             placeholder="..."
                             name="color"
+                            value={formData.color}
+                            onChange={handleChange}
                             ></input>
                             </div>
 
@@ -81,6 +122,8 @@ const AddCar = () => {
                                 className="bg-[#020a0a]/75 w-full text-[#ccc] border rounded-lg px-2 border-[#ccc]/25"
                                 placeholder="..."
                                 name="engine_capacity"
+                                value={formData.engine_capacity}
+                                onChange={handleChange}
                                 ></input>
                                 </div>
 
@@ -90,6 +133,8 @@ const AddCar = () => {
                                 className="bg-[#020a0a]/75 w-full text-[#ccc] border rounded-lg px-2 border-[#ccc]/25"
                                 placeholder="..."
                                 name="engine_power"
+                                value={formData.engine_power}
+                                onChange={handleChange}
                                 ></input>
                                 </div>
                             </div>
@@ -102,6 +147,8 @@ const AddCar = () => {
                             className="bg-[#020a0a]/75 w-full text-[#ccc] border rounded-lg px-2 border-[#ccc]/25"
                             placeholder="..."
                             name="mileage"
+                            value={formData.mileage}
+                            onChange={handleChange}
                             ></input>
                             </div>
 
@@ -118,13 +165,14 @@ const AddCar = () => {
                         <div className="basis-2/3 pl-24 h-full flex flex-col items-center justify-between">
                             
                             <div className="w-full h-full flex flex-col gap-y-16 container-1">
-                            <div className=" w-full h-[40%] bg-[#ccc] relative">
-                                <Image className="absolute top-0 bottom-0 left-0 right-0 m-auto" color="black" size={200} strokeWidth={1} />
+                            <input name="file" id="file" type="file" className="bg-white" height={0} width={0} style={{display: "none"}} ></input>
 
-                                <div className="flex font-semibold absolute w-fit mx-auto left-0 right-0 bottom-5 gap-x-2">
-                                <h2 className="text-black text-3xl">Добавить фото</h2>
-                                </div>
+                            <label htmlFor="file" className="w-full h-[40%]">
+                            <div role="button" className=" w-full h-full bg-[#ccc] relative">
+                                <Image className="absolute top-0 bottom-0 left-0 right-0 m-auto" color="black" size={200} strokeWidth={1} />
+                                <h2 className=" absolute bottom-0 w-fit left-0 right-0 mx-auto text-black text-3xl pb-6">Добавить фото</h2>
                             </div>
+                            </label>
 
                             <div className="w-full h-[40%] flex flex-col px-1">
                             <label htmlFor="description">Описание</label>
@@ -132,6 +180,8 @@ const AddCar = () => {
                             name="description"
                             className="p-2 w-full min-h-[240px] bg-[#020a0a]/75 rounded-lg resize-none border border-[#ccc]/25"
                             placeholder="..."
+                            value={formData.description}
+                            onChange={handleChange}
                             >
                             </textarea>
                             </div>
@@ -139,7 +189,7 @@ const AddCar = () => {
                             
 
                             <button className="btn_action_secondary  border border-[white] text-black bg-white w-full rounded-md p-3 flex items-center justify-center gap-x-4"
-                            type="button"
+                            type="submit"
                             >
                                 Опубликовать
                             </button>
