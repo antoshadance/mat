@@ -19,7 +19,7 @@ const ImageCarousel = (props) => {
             <div className="absolute left-[33.3%] w-1/3 h-full" onMouseEnter={()=>{setImageNum(1)}}></div>
             <div className="absolute right-0 w-1/3 h-full" onMouseEnter={()=>{setImageNum(2);}}></div>
 
-            <div className="absolute left-0 right-0 bottom-1 mx-auto rounded-3xl flex w-fit p-2 justify-center gap-x-6  bg-black/50">
+            <div className="absolute w-fit gap-x-6 rounded-3xl left-0 right-0 bottom-1 mx-auto flex justify-around p-2  bg-black/50">
                 <DotSvg w={8} color={isHovering&&imageNum==0?"gray":"white"}/>
                 <DotSvg w={8} color={isHovering&&imageNum==1?"gray":"white"}/>
                 <DotSvg w={8} color={isHovering&&imageNum==2?"gray":"white"}/>
