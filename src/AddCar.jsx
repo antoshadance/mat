@@ -17,9 +17,19 @@ const AddCar = () => {
         engine_capacity:"",
         engine_power:"",
         mileage:"",
-        imgs:"",
+        imgs:[],
         description: "",
     })
+
+    const [previews, setPreviews] = useState([])
+
+    function handleImageChange(e) {
+        console.log(e.target.files)
+        let tmp = [];
+        let uploaded = Array.from(e.target.files);
+        uploaded.forEach((e)=>{tmp.push(URL.createObjectURL(e))})
+        setPreviews(tmp)
+    }
 
     function handleChange(e) {
         setFormData({...formData,[e.target.name]:e.target.value})
@@ -165,12 +175,33 @@ const AddCar = () => {
                         <div className="basis-2/3 pl-24 h-full flex flex-col items-center justify-between">
                             
                             <div className="w-full h-full flex flex-col gap-y-16 container-1">
-                            <input name="file" id="file" type="file" className="bg-white" height={0} width={0} style={{display: "none"}} ></input>
+                            <input name="file" id="file" type="file" className="bg-white" height={0} width={0} style={{display: "none"}} multiple onChange={handleImageChange}></input>
 
                             <label htmlFor="file" className="w-full h-[40%]">
-                            <div role="button" className=" w-full h-full bg-[#ccc] relative">
+                            <div role="button" className=" w-full h-fit bg-[#ccc] " >
+                                {previews.length==0?
+                                <>
                                 <Image className="absolute top-0 bottom-0 left-0 right-0 m-auto" color="black" size={200} strokeWidth={1} />
                                 <h2 className=" absolute bottom-0 w-fit left-0 right-0 mx-auto text-black text-3xl pb-6">Добавить фото</h2>
+                                </>
+                                :
+                                <div className="w-full h-full flex">
+                                    <img
+                                    className="w-1/2 h-full object-cover"
+                                    src={previews[0]}
+                                    />
+                                    <div className="p-1 w-1/2 flex flex-wrap justify-between ">
+                                        {previews.map((e,i)=>{
+                                            return (
+                                                <img
+                                                src={e}
+                                                className={i==0?"w-[49%] filter-blur":"w-[49%]"}                                                
+                                                />
+                                            )
+                                        })}
+                                    </div>
+                                </div>    
+                            }
                             </div>
                             </label>
 
