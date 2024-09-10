@@ -40,7 +40,7 @@ const AdminMenu = (props) => {
                                 <AccordionTrigger>Каталог</AccordionTrigger>
                                 <AccordionContent className="flex flex-col gap-y-4 pl-4">
                                     <AccordionItem role="button">
-                                        Просмотр и редактирование каталога
+                                        <Link to={"/edit-catalog"}>Просмотр и редактирование каталога</Link>
                                     </AccordionItem>
                                     <AccordionItem role="button">
                                         Архив
