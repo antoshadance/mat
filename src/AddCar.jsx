@@ -177,8 +177,13 @@ const AddCar = () => {
                             <div className="w-full h-full flex flex-col gap-y-16 container-1">
                             <input name="file" id="file" type="file" className="bg-white" height={0} width={0} style={{display: "none"}} multiple onChange={handleImageChange}></input>
 
+<<<<<<< HEAD
                             <label htmlFor="file" className="w-full h-[40%]">
                             <div role="button" className=" w-full h-fit bg-[#ccc] " >
+=======
+                            <label htmlFor="file" className="w-full h-[40%] ">
+                            <div role="button" className=" w-full h-[280px] bg-[#ccc] relative" >
+>>>>>>> 9d5a8194ebc00da967c24d315a55d84e5f3914bd
                                 {previews.length==0?
                                 <>
                                 <Image className="absolute top-0 bottom-0 left-0 right-0 m-auto" color="black" size={200} strokeWidth={1} />
@@ -186,6 +191,7 @@ const AddCar = () => {
                                 </>
                                 :
                                 <div className="w-full h-full flex">
+<<<<<<< HEAD
                                     <img
                                     className="w-1/2 h-full object-cover"
                                     src={previews[0]}
@@ -196,6 +202,24 @@ const AddCar = () => {
                                                 <img
                                                 src={e}
                                                 className={i==0?"w-[49%] filter-blur":"w-[49%]"}                                                
+=======
+                                    <div className="w-1/2 h-full relative">
+                                    <img
+                                    className="w-full h-full object-cover"
+                                    src={previews[0]}
+                                    />
+                                    <div className="absolute bottom-0 bg-black/25 backdrop-blur-sm w-full p-2">
+                                        <h2>Основное фото</h2>
+                                    </div>
+                                    </div>
+                                    <div className="container-1 p-1 h-full w-1/2 gap-1 flex flex-wrap justify-between ">
+                                        {previews.map((e,i)=>{
+                                            return (
+                                                <img
+                                                key={i}
+                                                src={e}
+                                                className={i==0?"w-[49%] h-[100px] object-cover blur-sm":"w-[49%] h-[100px]"}                                                
+>>>>>>> 9d5a8194ebc00da967c24d315a55d84e5f3914bd
                                                 />
                                             )
                                         })}
