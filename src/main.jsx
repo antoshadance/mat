@@ -23,13 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/add-car",
     element: <AddCar/>
-<<<<<<< HEAD
-=======
   },
   {
     path: "/edit-catalog",
     element: <Test/>
->>>>>>> 9d5a8194ebc00da967c24d315a55d84e5f3914bd
   }
 ])
 

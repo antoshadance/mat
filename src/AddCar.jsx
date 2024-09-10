@@ -1,7 +1,7 @@
 import Navbar from "./_components/navbar";
 import AdminMenu from "./_components/AdminMenu";
 import "./Test.css"
-import { Image, Plus } from "lucide-react";
+import { CircleX, Image, X } from "lucide-react";
 import { useState } from "react";
 import "./_components/btnaction.css"
 
@@ -20,6 +20,22 @@ const AddCar = () => {
         imgs:[],
         description: "",
     })
+
+    const handleIconHoverOn  = (e) => {
+        let arr = Array.from(e.target.children)
+        arr.forEach((e)=>{e.setAttribute("stroke","white")})
+    }
+
+    const handleIconHoverOut = (e) => {
+        let arr = Array.from(e.target.children)
+        arr.forEach((e)=>{e.setAttribute("stroke","#ccc")})
+    }
+
+    const handleImageDelete = (e) => {
+        let imgSrc = e.target.parentElement.previousElementSibling.attributes.src.value;
+        console.log(previews.find(1))
+        
+    }
 
     const [previews, setPreviews] = useState([])
 
@@ -177,13 +193,8 @@ const AddCar = () => {
                             <div className="w-full h-full flex flex-col gap-y-16 container-1">
                             <input name="file" id="file" type="file" className="bg-white" height={0} width={0} style={{display: "none"}} multiple onChange={handleImageChange}></input>
 
-<<<<<<< HEAD
-                            <label htmlFor="file" className="w-full h-[40%]">
-                            <div role="button" className=" w-full h-fit bg-[#ccc] " >
-=======
                             <label htmlFor="file" className="w-full h-[40%] ">
                             <div role="button" className=" w-full h-[280px] bg-[#ccc] relative" >
->>>>>>> 9d5a8194ebc00da967c24d315a55d84e5f3914bd
                                 {previews.length==0?
                                 <>
                                 <Image className="absolute top-0 bottom-0 left-0 right-0 m-auto" color="black" size={200} strokeWidth={1} />
@@ -191,18 +202,6 @@ const AddCar = () => {
                                 </>
                                 :
                                 <div className="w-full h-full flex">
-<<<<<<< HEAD
-                                    <img
-                                    className="w-1/2 h-full object-cover"
-                                    src={previews[0]}
-                                    />
-                                    <div className="p-1 w-1/2 flex flex-wrap justify-between ">
-                                        {previews.map((e,i)=>{
-                                            return (
-                                                <img
-                                                src={e}
-                                                className={i==0?"w-[49%] filter-blur":"w-[49%]"}                                                
-=======
                                     <div className="w-1/2 h-full relative">
                                     <img
                                     className="w-full h-full object-cover"
@@ -215,12 +214,16 @@ const AddCar = () => {
                                     <div className="container-1 p-1 h-full w-1/2 gap-1 flex flex-wrap justify-between ">
                                         {previews.map((e,i)=>{
                                             return (
-                                                <img
-                                                key={i}
-                                                src={e}
-                                                className={i==0?"w-[49%] h-[100px] object-cover blur-sm":"w-[49%] h-[100px]"}                                                
->>>>>>> 9d5a8194ebc00da967c24d315a55d84e5f3914bd
-                                                />
+                                                <div className="w-[49%] h-[100px] relative">
+                                                    <img
+                                                    key={i}
+                                                    src={e}
+                                                    className={i==0?"w-full h-full object-cover blur-sm":"w-full h-full object-cover"}                                                
+                                                    />
+                                                    <button type="button" className=" absolute top-0 right-0"   onClick={handleImageDelete}>
+                                                    <X  strokeWidth={1.5} onMouseEnter={handleIconHoverOn} onMouseLeave={handleIconHoverOut} style={{transition: "all .5 ease-in-out"}}/>
+                                                    </button>
+                                                </div>
                                             )
                                         })}
                                     </div>
