@@ -8,7 +8,7 @@ import "./_components/btnaction.css"
 const AddCar = () => {
 
     
-
+//FORM (MAIN)
     const [formData,setFormData] = useState({
         brand:"",
         model:"",
@@ -22,40 +22,106 @@ const AddCar = () => {
         description: "",
     })
 
+    function handleChange(e) {
+        setFormData({...formData,[e.target.name]:e.target.value})
+    }
+//
+
+
+//LUCIDE ICONS HOVER
     const handleIconHoverOn  = (e) => {
         let arr = Array.from(e.target.children)
         arr.forEach((e)=>{e.setAttribute("stroke","white")})
     }
 
+
     const handleIconHoverOut = (e) => {
         let arr = Array.from(e.target.children)
         arr.forEach((e)=>{e.setAttribute("stroke","#ccc")})
     }
+//
+
+
+// IMAGES AND PREVIEWS
+    const [images,setImages] = useState(formData.imgs)
+    const [previews, setPreviews] = useState([])
 
     const handleImageDelete = (e) => {
             console.log(e.target.parentElement.previousElementSibling)        
     }
 
-    const [previews, setPreviews] = useState([])
 
     function handleImageChange(e) {
-        console.log(e.target.files)
+        
         let tmp = [];
         let uploaded = Array.from(e.target.files);
+        setFormData({
+            ...formData,
+            imgs: uploaded
+        })
         uploaded.forEach((e)=>{tmp.push(URL.createObjectURL(e))})
         setPreviews(tmp)
     }
 
-    function handleChange(e) {
-        setFormData({...formData,[e.target.name]:e.target.value})
+    function handleImagesInitialSet(ev) {
+        setImages(ev.target.files)
+        setFormData({
+            ...formData,
+            imgs: [...ev.target.files]
+        })
     }
+//
+    
 
+
+
+//INPUTS
+        const [newInputCount,setNewInputCount] = useState(0);
+        const [extraInputs,setExtraInputs] = useState([]);
+
+        function handleInputNameChange (ev,e,i) {
+            let nextInputs = [...extraInputs]
+            nextInputs[i].name = ev.target.value
+            setExtraInputs(nextInputs)
+        }
+
+        function handleInputValueChange(ev,e,i) {
+            let nextInputs = [...extraInputs]
+            nextInputs[i].value=ev.target.value
+            setExtraInputs(nextInputs)
+        }
+
+        function addNewInput () {
+            setExtraInputs([
+                ...extraInputs,
+                {
+                    name: "Новое поле "+newInputCount,
+                    value:""
+                }
+            ])
+            setNewInputCount(newInputCount+1)
+        }
+
+        function handleInputDelete (i) {
+            setExtraInputs(extraInputs.filter((e,index)=>i!==index))
+        }
+
+        useEffect(()=>{
+            setFormData({
+                ...formData,
+                extraInputs:[...extraInputs]
+            })
+        },[extraInputs])  
+//
+
+
+//SUBMITTING FORM
     function handleSubmit(e) {
         e.preventDefault();
-               
+            
             const data = {...formData};
             console.log(data)
-    
+
             fetch("http://localhost:8713/api/cars/create-new",{
                 method: "POST",
                 headers: {
@@ -81,44 +147,9 @@ const AddCar = () => {
             },1000))
 
     }
-
-    const [newInputCount,setNewInputCount] = useState(0);
-    const [extraInputs,setExtraInputs] = useState([]);
-
-    function handleInputNameChange (ev,e,i) {
-        let nextInputs = [...extraInputs]
-        nextInputs[i].name = ev.target.value
-        setExtraInputs(nextInputs)
-    }
-
-    function handleInputValueChange(ev,e,i) {
-        let nextInputs = [...extraInputs]
-        nextInputs[i].value=ev.target.value
-        setExtraInputs(nextInputs)
-    }
-
-    function addNewInput () {
-        setExtraInputs([
-            ...extraInputs,
-            {
-                name: "Новое поле "+newInputCount,
-                value:""
-            }
-        ])
-        setNewInputCount(newInputCount+1)
-    }
-
-    function handleInputDelete (i) {
-        setExtraInputs(extraInputs.filter((e,index)=>i!==index))
-    }
+//
     
-    useEffect(()=>{
-        setFormData({
-            ...formData,
-            extraInputs:[...extraInputs]
-        })
-    },[extraInputs])
-
+    
     return ( 
         <>
         <Navbar/>
